@@ -43,7 +43,9 @@ public class CrptApi implements AutoCloseable {
         ArrayBlockingQueue<ApiResponse> responseQueue = new ArrayBlockingQueue<>(1);
         this.docIdToResponseQueue.put(request.doc_id, responseQueue);
         this.requestQueue.add(request);
-        return responseQueue.take();
+        ApiResponse response = responseQueue.take();
+        this.docIdToResponseQueue.remove(request.doc_id);
+        return response;
     }
 
     @Override
