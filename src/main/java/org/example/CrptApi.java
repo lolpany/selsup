@@ -31,7 +31,7 @@ public class CrptApi implements AutoCloseable {
 
     public CrptApi(TimeUnit timeUnit, int requestLimit) {
         this.requestLimitStep = timeUnit.toNanos(1) / requestLimit;
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://async.scraperapi.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ismp.crpt.ru/api/v3/").addConverterFactory(GsonConverterFactory.create()).build();
         this.crptApiApi = retrofit.create(CrptApiApi.class);
         this.isOn = new AtomicBoolean(true);
         this.requestQueue = new ConcurrentLinkedQueue<>();
