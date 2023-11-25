@@ -8,6 +8,8 @@ import retrofit2.http.POST;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -61,9 +63,32 @@ public class CrptApi implements AutoCloseable {
     private static class SubmitDocumentRequestBody {
         Description description;
         String doc_id;
+        String doc_status;
+        String doc_type;
+        boolean importRequest;
+        String owner_inn;
+        String participant_inn;
+        String producer_inn;
+        LocalDate production_date;
+        String production_type;
+        List<Product> products;
+        LocalDate reg_date;
+        String reg_number;
 
         private class Description {
             String participantInn;
+        }
+
+        private class Product {
+            String certificate_document;
+            LocalDate certificate_document_date;
+            String certificate_document_number;
+            String owner_inn;
+            String producer_inn;
+            LocalDate production_date;
+            String tnved_code;
+            String uit_code;
+            String uitu_code;
         }
     }
 
