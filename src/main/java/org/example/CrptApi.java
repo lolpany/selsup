@@ -100,9 +100,9 @@ public class CrptApi implements AutoCloseable {
             while (isOn.get()) {
                 long currentTime = System.nanoTime();
                 if (currentTime - lastRequestSendTime > requestLimitStep) {
-                    lastRequestSendTime = currentTime;
                     SubmitDocumentRequestBody request = requestQueue.poll();
                     if (request != null) {
+                        lastRequestSendTime = currentTime;
                         ApiResponse apiResponse = null;
                         try {
                             apiResponse = crptApiApi.documentsCreate(request).execute().body();
